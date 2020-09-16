@@ -7,11 +7,14 @@ public class RedCube : Cube
 {
     public string curCubeName = "RedCube";
     private int redPoint = 1;
+    private string color = "red";
 
     private void Start()
     {
         cubeName = curCubeName;
+        cubeColor = color;
     }
+
 
 
     public override void EarnPoint()

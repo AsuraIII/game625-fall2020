@@ -21,6 +21,10 @@ public class GameManager : MonoBehaviour
         _instance = this;
     }
 
+    private void Start()
+    {
+        Cube.OnCubeCollectedRepository += AddCube;
+    }
     public void Timer() {
         if (timer > 0)
         {
@@ -52,12 +56,27 @@ public class GameManager : MonoBehaviour
     public void AddCube(Cube cube)
     {
         cubelist.Add(cube);
+        //string cubeContent = "<color=" + cube.cubeColor + ">" + cube.cubeName + "</color>";
+        UIManager._instance.SetRepositoryContent(CubeListContent());
+    }
+
+    public string CubeListContent()
+    {
+        string cubeListContent = "";
+        foreach (Cube cube in cubelist)
+        {
+            cubeListContent += "\n"+ "<color=" + cube.cubeColor + ">" + cube.cubeName + "</color>";
+        }
+        return cubeListContent;
     }
 
     public void DelLastEle()
     {
         if (cubelist.Count > 0)
+        {
             cubelist.RemoveAt(cubelist.Count - 1);
+            UIManager._instance.SetRepositoryContent(CubeListContent());
+        }
     }
 
 

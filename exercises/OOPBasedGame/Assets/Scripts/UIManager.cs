@@ -16,6 +16,8 @@ public class UIManager : MonoBehaviour
 
     public Text loseMsg;
 
+    public Text repositoryContent;
+
     private void Awake()
     {
         _instance = this;
@@ -33,6 +35,10 @@ public class UIManager : MonoBehaviour
     public void SetTime(float time)
     {
         timeCount.text = time.ToString("f2");
+    }
+    public void SetRepositoryContent(string content)
+    {
+        repositoryContent.text = content;
     }
 
     public void ShowWinMsg() {
