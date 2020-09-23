@@ -24,6 +24,7 @@ public class ObjectPooler : MonoBehaviour
     {
         poolDict = new Dictionary<ObjectType, Queue<GameObject>>();
 
+        //Initialize pool
         foreach (Pool pool in poolList)
         {
             Queue<GameObject> objectPool = new Queue<GameObject>();
@@ -38,6 +39,7 @@ public class ObjectPooler : MonoBehaviour
         }
     }
 
+    //return gameObject from the pool
     public GameObject SpawnFromPool(ObjectType type, Vector3 position)
     {
         if (poolDict != null)
@@ -50,7 +52,6 @@ public class ObjectPooler : MonoBehaviour
             {
                 GameObject objectgToSpawn = poolDict[type].Dequeue();
 
-
                 objectgToSpawn.SetActive(true);
                 objectgToSpawn.transform.position = position;
 
@@ -61,6 +62,12 @@ public class ObjectPooler : MonoBehaviour
         return null;
     }
 
+    //Return gameObject to pool
+    public void ReturnToPool(ObjectType type, GameObject gameObj)
+    {
+        gameObj.SetActive(false);
+        poolDict[type].Enqueue(gameObj);
+    }
 
 }
 public enum ObjectType

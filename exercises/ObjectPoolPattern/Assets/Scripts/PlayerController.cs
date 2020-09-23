@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour {
 	public float speed;
 	public Text countText;
 	public Text winText;
+	private ObjectPooler objectPooler;
 
 	// Create private references to the rigidbody component on the player, and the count of pick up objects picked up so far
 	private Rigidbody rb;
@@ -30,6 +31,11 @@ public class PlayerController : MonoBehaviour {
 
 		// Set the text property of our Win Text UI to an empty string, making the 'You Win' (game over message) blank
 		winText.text = "";
+
+		if (objectPooler == null)
+		{
+			objectPooler = FindObjectOfType<ObjectPooler>();
+		}
 	}
 
 	// Each physics step..
@@ -54,12 +60,8 @@ public class PlayerController : MonoBehaviour {
 		// ..and if the game object we intersect has the tag 'Pick Up' assigned to it..
 		if (other.gameObject.CompareTag ("Pick Up"))
 		{
-			// Make the other game object (the pick up) inactive, to make it disappear
-			other.gameObject.SetActive (false);
-
-			//Add gameobject to the corresponding object pool.
-			ObjectPooler.poolDict[ObjectType.Cube].Enqueue(other.gameObject);
-
+			//return cube to pool
+			objectPooler.ReturnToPool(ObjectType.Cube, other.gameObject);
 
 			// Add one to the score variable 'count'
 			count = count + 1;

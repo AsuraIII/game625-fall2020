@@ -6,6 +6,7 @@ public class ObjectSpawner : MonoBehaviour
 {
     public float spawnTime = 3.0f;
     private ObjectPooler objectPooler;
+
     private void Start()
     {
         if (objectPooler == null)
@@ -15,7 +16,8 @@ public class ObjectSpawner : MonoBehaviour
 
         StartCoroutine(ObjectSpawn(spawnTime));
     }
-    public IEnumerator ObjectSpawn(float time)
+
+    private IEnumerator ObjectSpawn(float time)
     {
         while (true)
         {
