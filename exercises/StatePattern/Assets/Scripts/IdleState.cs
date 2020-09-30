@@ -13,7 +13,7 @@ public class IdleState : IState
     public void Do()
     {
         //If can see player change to follow state
-        if (CanSeePlayer())
+        if (CanSeeTarget())
         {
             cube.ChangeState(new FollowState());
         }
@@ -24,7 +24,8 @@ public class IdleState : IState
        
     }
 
-    private bool CanSeePlayer()
+    //If target in range
+    private bool CanSeeTarget()
     {
         float distance = (cube.transform.position - cube.target.transform.position).magnitude;
         if (distance <= cube.attractDist)

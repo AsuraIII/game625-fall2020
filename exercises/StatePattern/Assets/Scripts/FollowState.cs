@@ -30,8 +30,10 @@ public class FollowState : IState
 
     }
 
+    //Check if away from target
     private bool AwayFromTarget()
     {
+        //distance between target and cube
         float distance = (cube.transform.position - cube.target.transform.position).magnitude;
         if (distance > cube.attractDist)
         {
@@ -39,6 +41,8 @@ public class FollowState : IState
         }
         return false;
     }
+
+    //Move cube to target
     private void MoveToTarget()
     {
         cube.transform.position = Vector3.MoveTowards(cube.transform.position, cube.target.transform.position, Time.deltaTime * cube.Speed);

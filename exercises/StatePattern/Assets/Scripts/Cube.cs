@@ -29,7 +29,6 @@ public class Cube : MonoBehaviour
 
     private void Update()
     {
-
         currentState.Do();
     }
 

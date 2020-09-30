@@ -19,10 +19,11 @@ public class EvadeState : IState
         
     }
 
+    //Eavde and back to origin position
     private void EvadeFromTarget()
     {
-
         cube.transform.position = Vector3.MoveTowards(cube.transform.position, cube.spawnPosition, Time.deltaTime * cube.Speed);
+        //distance between cube and origin position 
         float distance = Vector3.Distance(cube.SpawnPosition, cube.transform.position);
         if (distance <= 0.0f)
         {
