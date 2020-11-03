@@ -12,13 +12,15 @@ public class ObjectPooler : MonoBehaviour
         public int poolSize;
     }
 
+    public static ObjectPooler _instance;
+
     public Transform objectParent;
     public List<Pool> poolList;
     public static Dictionary<ObjectType, Queue<GameObject>> poolDict;
 
     private void Awake()
     {
-
+        _instance = this;
     }
     void Start()
     {
